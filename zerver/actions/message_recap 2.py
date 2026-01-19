@@ -90,14 +90,11 @@ def do_generate_recap(user_profile: UserProfile) -> str | None:
 
     # Import inside function to avoid import cost if feature unused.
     import litellm
-    import markdown
 
     response = litellm.completion(
         model=config["model"],
         messages=messages,
     )
 
-    summary_markdown = response["choices"][0]["message"]["content"].strip()
-    # Convert markdown to HTML so frontend can render clickable links
-    summary_html = markdown.markdown(summary_markdown)
-    return summary_html
+    summary = response["choices"][0]["message"]["content"].strip()
+    return summary

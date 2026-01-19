@@ -2,6 +2,7 @@ import $ from "jquery";
 
 import render_navbar_help_menu from "../templates/popovers/navbar/navbar_help_menu_popover.hbs";
 
+import * as message_recap from "./message_recap.ts";
 import {page_params} from "./page_params.ts";
 import * as popover_menus from "./popover_menus.ts";
 import {current_user} from "./state_data.ts";
@@ -28,6 +29,11 @@ export function initialize(): void {
         },
         onMount(instance) {
             popover_menus.popover_instances.help_menu = instance;
+            const $popper = $(instance.popper);
+            $popper.one("click", ".sidebar-popover-message-recap", () => {
+                message_recap.show_message_recap();
+                popover_menus.hide_current_popover_if_visible(instance);
+            });
         },
         onShow(instance) {
             instance.setContent(
