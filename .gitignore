@@ -32,6 +32,7 @@ package-lock.json
 
 /.vagrant
 /var
+/.env
 
 /.dmypy.json
 /.ruff_cache
@@ -89,3 +90,5 @@ core
 ## Miscellaneous
 # (Ideally this section is empty.)
 .transifexrc
+.archiver_shadow/
+.snapshots/

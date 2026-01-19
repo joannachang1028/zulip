@@ -92,6 +92,7 @@ from zerver.views.message_flags import (
 from zerver.views.message_report import report_message_backend
 from zerver.views.message_send import render_message_backend, send_message_backend, zcommand_backend
 from zerver.views.message_summary import get_messages_summary
+from zerver.views.message_recap import get_messages_recap
 from zerver.views.muted_users import mute_user, unmute_user
 from zerver.views.navigation_views import (
     add_navigation_view,
@@ -432,6 +433,10 @@ v1_api_and_json_patterns = [
             # Not documented since the API details haven't been finalized yet.
             {"intentionally_undocumented"},
         ),
+    ),
+    rest_path(
+        "messages/recap",
+        GET=(get_messages_recap, {"intentionally_undocumented"}),
     ),
     rest_path("messages/render", POST=render_message_backend),
     rest_path("messages/flags", POST=update_message_flags),
