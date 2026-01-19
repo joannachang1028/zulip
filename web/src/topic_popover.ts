@@ -17,6 +17,7 @@ import * as starred_messages_ui from "./starred_messages_ui.ts";
 import {realm} from "./state_data.ts";
 import * as stream_popover from "./stream_popover.ts";
 import * as stream_topic_history from "./stream_topic_history.ts";
+import * as topic_title_improver from "./topic_title_improver.ts";
 import * as ui_util from "./ui_util.ts";
 import * as unread_ops from "./unread_ops.ts";
 import * as user_topics from "./user_topics.ts";
@@ -207,6 +208,12 @@ export function initialize(): void {
 
                 $popper.one("click", ".sidebar-popover-summarize-topic", () => {
                     message_summary.get_narrow_summary(stream_id, topic_name);
+
+                    popover_menus.hide_current_popover_if_visible(instance);
+                });
+
+                $popper.one("click", ".sidebar-popover-improve-topic-title", () => {
+                    topic_title_improver.show_topic_title_suggestion(stream_id, topic_name);
 
                     popover_menus.hide_current_popover_if_visible(instance);
                 });
